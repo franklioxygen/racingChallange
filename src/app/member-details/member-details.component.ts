@@ -58,21 +58,20 @@ export class MemberDetailsComponent implements OnInit, OnChanges {
       this.router.navigate(["/login"]);
     }
     let id = parseInt(this._route.snapshot.paramMap.get("id"));
-    if (id === NaN) {
-      this.memberForm = this.formBuilder.group({
-        firstName: ["", Validators.required],
-        lastName: ["", Validators.required],
-        jobTitle: ["", Validators.required],
-        team: ["", Validators.required],
-        status: ["", Validators.required]
-      });
-    } else {
-      // get member details
-      this.appService
-        .getMemberDetails(id)
-        .subscribe(member => (this.memberDetails = member));
-      console.log(this.memberDetails);
-    }
+    //  if (id === NaN) {
+    this.memberForm = this.formBuilder.group({
+      firstName: ["", Validators.required],
+      lastName: ["", Validators.required],
+      jobTitle: ["", Validators.required],
+      team: ["", Validators.required],
+      status: ["", Validators.required]
+    });
+    //   } else {
+    // get member details
+    this.appService
+      .getMemberDetails(id)
+      .subscribe(member => this.memberForm.patchValue(member));
+    //   }
     this.appService.getTeams().subscribe(teams => (this.teams = teams));
   }
 
@@ -88,11 +87,18 @@ export class MemberDetailsComponent implements OnInit, OnChanges {
     if (this.memberForm.invalid) {
       return;
     }
-
+    let id = parseInt(this._route.snapshot.paramMap.get("id"));
     this.memberModel = form.value;
-    this.appService.addMember(this.memberModel).subscribe(member => {
-      this.appService.members.push(member);
-      this.router.navigate(["/members/"]);
-    });
+    if (!id) {
+      this.appService.addMember(this.memberModel).subscribe(member => {
+        this.appService.members.push(member);
+        this.router.navigate(["/members/"]);
+      });
+    } else {
+      this.appService.upadteMember(id, this.memberModel).subscribe(member => {
+        this.appService.members.push(member);
+        this.router.navigate(["/members/"]);
+      });
+    }
   }
 }

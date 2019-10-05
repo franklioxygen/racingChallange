@@ -5,24 +5,32 @@
       "firstName": "John",
       "lastName": "Doe",
       "jobTitle": "Driver",
-      "team": "Formula 1 - Car 77",
-      "status": "Active"
+      "team": "Deutsche Tourenwagen Masters - Car 117",
+      "status": "Inactive"
     },
     {
       "id": 2,
       "firstName": "Alex",
       "lastName": "Sainz",
       "jobTitle": "Driver",
-      "team": "Formula 1 - Car 78",
-      "status": "Active"
+      "team": "World Rally Championship - Car 77",
+      "status": "Inactive"
     },
     {
       "id": 3,
-      "firstName": "Jeb",
+      "firstName": "Jebbb",
       "lastName": "Jackson",
       "jobTitle": "Reserve Driver",
-      "team": "Formula 1 - Car 77",
+      "team": "Formula 2 - Car 54",
       "status": "Inactive"
+    },
+    {
+      "firstName": "Peifan",
+      "lastName": "Li",
+      "jobTitle": "Full Stack Software Engineer",
+      "team": "Formula 2 - Car 54",
+      "status": "Active",
+      "id": 4
     }
   ],
   "teams": [

@@ -24,6 +24,7 @@
         <!--We may have to make a service call to get this list-->
         <select id="team" class="col-md-6 custom-select" formControlName="team"
           [ngClass]="{ 'is-invalid': submitted && formVal.team.errors }">
+          <option selected value=team></option>
           <option *ngFor="let team of teams">{{ team?.teamName }}</option>
         </select>
       </div>

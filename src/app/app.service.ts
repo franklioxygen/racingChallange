@@ -1,6 +1,7 @@
-import { Injectable, EventEmitter } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { catchError } from "rxjs/operators";
+import { Observable } from "rxjs";
 import { HttpErrorResponse } from "@angular/common/http";
 
 @Injectable({
@@ -39,6 +40,12 @@ export class AppService {
   addMember(memberForm) {
     return this.http
       .post(`${this.api}/members`, memberForm)
+      .pipe(catchError(this.handleError));
+  }
+
+  upadteMember(id: number, memberForm) {
+    return this.http
+      .patch(`${this.api}/members/` + id, memberForm)
       .pipe(catchError(this.handleError));
   }
 
